@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="M2LModelStoreContainer" CdmEntityContainer="M2LEntities">
+    <EntitySetMapping Name="tcategories">
+      <EntityTypeMapping TypeName="M2LModel.tcategories">
+        <MappingFragment StoreEntitySet="tcategories">
+          <ScalarProperty Name="idCat" ColumnName="idCat" />
+          <ScalarProperty Name="libcat" ColumnName="libcat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tligues">
+      <EntityTypeMapping TypeName="M2LModel.tligues">
+        <MappingFragment StoreEntitySet="tligues">
+          <ScalarProperty Name="idligue" ColumnName="idligue" />
+          <ScalarProperty Name="nomligue" ColumnName="nomligue" />
+          <ScalarProperty Name="adrligue" ColumnName="adrligue" />
+          <ScalarProperty Name="villeligue" ColumnName="villeligue" />
+          <ScalarProperty Name="cpligue" ColumnName="cpligue" />
+          <ScalarProperty Name="telligue" ColumnName="telligue" />
+          <ScalarProperty Name="mailligue" ColumnName="mailligue" />
+          <ScalarProperty Name="intitligue" ColumnName="intitligue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="treserv">
+      <EntityTypeMapping TypeName="M2LModel.treserv">
+        <MappingFragment StoreEntitySet="treserv">
+          <ScalarProperty Name="idreserv" ColumnName="idreserv" />
+          <ScalarProperty Name="idLigue" ColumnName="idLigue" />
+          <ScalarProperty Name="idsalle" ColumnName="idsalle" />
+          <ScalarProperty Name="datereserv" ColumnName="datereserv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tsalles">
+      <EntityTypeMapping TypeName="M2LModel.tsalles">
+        <MappingFragment StoreEntitySet="tsalles">
+          <ScalarProperty Name="idsalle" ColumnName="idsalle" />
+          <ScalarProperty Name="libsalle" ColumnName="libsalle" />
+          <ScalarProperty Name="prixsalle" ColumnName="prixsalle" />
+          <ScalarProperty Name="perssalle" ColumnName="perssalle" />
+          <ScalarProperty Name="idCat" ColumnName="idCat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

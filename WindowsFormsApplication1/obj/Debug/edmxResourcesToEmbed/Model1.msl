@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TravailLigueModelStoreContainer" CdmEntityContainer="TravailLigueEntities">
+    <EntitySetMapping Name="tcategories">
+      <EntityTypeMapping TypeName="TravailLigueModel.tcategory">
+        <MappingFragment StoreEntitySet="tcategories">
+          <ScalarProperty Name="idCat" ColumnName="idCat" />
+          <ScalarProperty Name="libcat" ColumnName="libcat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tcomptes">
+      <EntityTypeMapping TypeName="TravailLigueModel.tcompte">
+        <MappingFragment StoreEntitySet="tcomptes">
+          <ScalarProperty Name="idCompte" ColumnName="idCompte" />
+          <ScalarProperty Name="identifiant" ColumnName="identifiant" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tligues">
+      <EntityTypeMapping TypeName="TravailLigueModel.tligue">
+        <MappingFragment StoreEntitySet="tligues">
+          <ScalarProperty Name="idligue" ColumnName="idligue" />
+          <ScalarProperty Name="nomligue" ColumnName="nomligue" />
+          <ScalarProperty Name="adrligue" ColumnName="adrligue" />
+          <ScalarProperty Name="villeligue" ColumnName="villeligue" />
+          <ScalarProperty Name="cpligue" ColumnName="cpligue" />
+          <ScalarProperty Name="telligue" ColumnName="telligue" />
+          <ScalarProperty Name="mailligue" ColumnName="mailligue" />
+          <ScalarProperty Name="intitligue" ColumnName="intitligue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="treservs">
+      <EntityTypeMapping TypeName="TravailLigueModel.treserv">
+        <MappingFragment StoreEntitySet="treserv">
+          <ScalarProperty Name="idreserv" ColumnName="idreserv" />
+          <ScalarProperty Name="idLigue" ColumnName="idLigue" />
+          <ScalarProperty Name="idsalle" ColumnName="idsalle" />
+          <ScalarProperty Name="datereserv" ColumnName="datereserv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tsalles">
+      <EntityTypeMapping TypeName="TravailLigueModel.tsalle">
+        <MappingFragment StoreEntitySet="tsalles">
+          <ScalarProperty Name="idsalle" ColumnName="idsalle" />
+          <ScalarProperty Name="libsalle" ColumnName="libsalle" />
+          <ScalarProperty Name="prixsalle" ColumnName="prixsalle" />
+          <ScalarProperty Name="perssalle" ColumnName="perssalle" />
+          <ScalarProperty Name="idCat" ColumnName="idCat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

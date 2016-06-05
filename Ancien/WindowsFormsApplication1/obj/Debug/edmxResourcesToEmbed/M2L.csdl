@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravailLigueModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tcategory">
+    <Key>
+      <PropertyRef Name="idCat" />
+    </Key>
+    <Property Name="idCat" Type="Int16" Nullable="false" />
+    <Property Name="libcat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tsalles" Relationship="Self.FK_reserv_cat" FromRole="tcategories" ToRole="tsalles" />
+  </EntityType>
+  <EntityType Name="tcompte">
+    <Key>
+      <PropertyRef Name="idCompte" />
+    </Key>
+    <Property Name="idCompte" Type="Int32" Nullable="false" />
+    <Property Name="identifiant" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tligue">
+    <Key>
+      <PropertyRef Name="idligue" />
+    </Key>
+    <Property Name="idligue" Type="Int32" Nullable="false" />
+    <Property Name="nomligue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adrligue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="villeligue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cpligue" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telligue" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mailligue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="intitligue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="treservs" Relationship="Self.FK_treserv_tligues" FromRole="tligues" ToRole="treserv" />
+  </EntityType>
+  <EntityType Name="treserv">
+    <Key>
+      <PropertyRef Name="idreserv" />
+    </Key>
+    <Property Name="idreserv" Type="Int32" Nullable="false" />
+    <Property Name="idLigue" Type="Int32" Nullable="false" />
+    <Property Name="idsalle" Type="Int16" Nullable="false" />
+    <Property Name="datereserv" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tligue" Relationship="Self.FK_treserv_tligues" FromRole="treserv" ToRole="tligues" />
+    <NavigationProperty Name="tsalle" Relationship="Self.FK_treserv_tsalles" FromRole="treserv" ToRole="tsalles" />
+  </EntityType>
+  <EntityType Name="tsalle">
+    <Key>
+      <PropertyRef Name="idsalle" />
+    </Key>
+    <Property Name="idsalle" Type="Int16" Nullable="false" />
+    <Property Name="libsalle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="prixsalle" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="perssalle" Type="Int16" Nullable="false" />
+    <Property Name="idCat" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="tcategory" Relationship="Self.FK_reserv_cat" FromRole="tsalles" ToRole="tcategories" />
+    <NavigationProperty Name="treservs" Relationship="Self.FK_treserv_tsalles" FromRole="tsalles" ToRole="treserv" />
+  </EntityType>
+  <Association Name="FK_reserv_cat">
+    <End Role="tcategories" Type="Self.tcategory" Multiplicity="1" />
+    <End Role="tsalles" Type="Self.tsalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tcategories">
+        <PropertyRef Name="idCat" />
+      </Principal>
+      <Dependent Role="tsalles">
+        <PropertyRef Name="idCat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_treserv_tligues">
+    <End Role="tligues" Type="Self.tligue" Multiplicity="1" />
+    <End Role="treserv" Type="Self.treserv" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tligues">
+        <PropertyRef Name="idligue" />
+      </Principal>
+      <Dependent Role="treserv">
+        <PropertyRef Name="idLigue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_treserv_tsalles">
+    <End Role="tsalles" Type="Self.tsalle" Multiplicity="1" />
+    <End Role="treserv" Type="Self.treserv" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tsalles">
+        <PropertyRef Name="idsalle" />
+      </Principal>
+      <Dependent Role="treserv">
+        <PropertyRef Name="idsalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TravailLigueEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tcategories" EntityType="Self.tcategory" />
+    <EntitySet Name="tcomptes" EntityType="Self.tcompte" />
+    <EntitySet Name="tligues" EntityType="Self.tligue" />
+    <EntitySet Name="treservs" EntityType="Self.treserv" />
+    <EntitySet Name="tsalles" EntityType="Self.tsalle" />
+    <AssociationSet Name="FK_reserv_cat" Association="Self.FK_reserv_cat">
+      <End Role="tcategories" EntitySet="tcategories" />
+      <End Role="tsalles" EntitySet="tsalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_treserv_tligues" Association="Self.FK_treserv_tligues">
+      <End Role="tligues" EntitySet="tligues" />
+      <End Role="treserv" EntitySet="treservs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_treserv_tsalles" Association="Self.FK_treserv_tsalles">
+      <End Role="tsalles" EntitySet="tsalles" />
+      <End Role="treserv" EntitySet="treservs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

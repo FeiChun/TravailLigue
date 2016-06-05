@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravailLigueModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tcategories">
+    <Key>
+      <PropertyRef Name="idCat" />
+    </Key>
+    <Property Name="idCat" Type="smallint" Nullable="false" />
+    <Property Name="libcat" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tcomptes">
+    <Key>
+      <PropertyRef Name="idCompte" />
+    </Key>
+    <Property Name="idCompte" Type="int" Nullable="false" />
+    <Property Name="identifiant" Type="nchar" MaxLength="20" />
+    <Property Name="password" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tligues">
+    <Key>
+      <PropertyRef Name="idligue" />
+    </Key>
+    <Property Name="idligue" Type="int" Nullable="false" />
+    <Property Name="nomligue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="adrligue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="villeligue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cpligue" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="telligue" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="mailligue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="intitligue" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="treserv">
+    <Key>
+      <PropertyRef Name="idreserv" />
+    </Key>
+    <Property Name="idreserv" Type="int" Nullable="false" />
+    <Property Name="idLigue" Type="int" Nullable="false" />
+    <Property Name="idsalle" Type="smallint" Nullable="false" />
+    <Property Name="datereserv" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tsalles">
+    <Key>
+      <PropertyRef Name="idsalle" />
+    </Key>
+    <Property Name="idsalle" Type="smallint" Nullable="false" />
+    <Property Name="libsalle" Type="nvarchar" MaxLength="50" />
+    <Property Name="prixsalle" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="perssalle" Type="smallint" Nullable="false" />
+    <Property Name="idCat" Type="smallint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_reserv_cat">
+    <End Role="tcategories" Type="Self.tcategories" Multiplicity="1" />
+    <End Role="tsalles" Type="Self.tsalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tcategories">
+        <PropertyRef Name="idCat" />
+      </Principal>
+      <Dependent Role="tsalles">
+        <PropertyRef Name="idCat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_treserv_tligues">
+    <End Role="tligues" Type="Self.tligues" Multiplicity="1" />
+    <End Role="treserv" Type="Self.treserv" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tligues">
+        <PropertyRef Name="idligue" />
+      </Principal>
+      <Dependent Role="treserv">
+        <PropertyRef Name="idLigue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_treserv_tsalles">
+    <End Role="tsalles" Type="Self.tsalles" Multiplicity="1" />
+    <End Role="treserv" Type="Self.treserv" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tsalles">
+        <PropertyRef Name="idsalle" />
+      </Principal>
+      <Dependent Role="treserv">
+        <PropertyRef Name="idsalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TravailLigueModelStoreContainer">
+    <EntitySet Name="tcategories" EntityType="Self.tcategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tcomptes" EntityType="Self.tcomptes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tligues" EntityType="Self.tligues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="treserv" EntityType="Self.treserv" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tsalles" EntityType="Self.tsalles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_reserv_cat" Association="Self.FK_reserv_cat">
+      <End Role="tcategories" EntitySet="tcategories" />
+      <End Role="tsalles" EntitySet="tsalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_treserv_tligues" Association="Self.FK_treserv_tligues">
+      <End Role="tligues" EntitySet="tligues" />
+      <End Role="treserv" EntitySet="treserv" />
+    </AssociationSet>
+    <AssociationSet Name="FK_treserv_tsalles" Association="Self.FK_treserv_tsalles">
+      <End Role="tsalles" EntitySet="tsalles" />
+      <End Role="treserv" EntitySet="treserv" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
